@@ -1,0 +1,76 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "model0101",
+    "type": "object",
+    "properties": {
+      "string_prop": {
+        "type": "string",
+        "description": "A string property"
+      },
+      "number_prop": {
+        "type": "number",
+        "description": "A numeric property"
+      },
+      "integer_prop": {
+        "type": "integer",
+        "description": "An integer property"
+      },
+      "boolean_prop": {
+        "type": "boolean",
+        "description": "A boolean property"
+      },
+      "date_prop": {
+        "type": "string",
+        "format": "date",
+        "description": "A date property"
+      },
+      "timestamp_prop": {
+        "type": "string",
+        "format": "date-time",
+        "description": "A timestamp property"
+      },
+      "uuid_prop": {
+        "type": "string",
+        "format": "uuid",
+        "description": "A UUID property"
+      },
+      "array_prop": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "array_string_prop": {
+              "type": "string",
+              "description": "A string property in an array"
+            },
+            "array_number_prop": {
+              "type": "number",
+              "description": "A numeric property in an array"
+            }
+          }
+        },
+        "description": "An array property"
+      },
+      "dict_prop": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string",
+          "description": "A string property in a dictionary"
+        },
+        "description": "A dictionary property"
+      }
+    },
+    "required": [
+      "string_prop",
+      "number_prop",
+      "integer_prop",
+      "boolean_prop",
+      "date_prop",
+      "timestamp_prop",
+      "uuid_prop",
+      "array_prop",
+      "dict_prop"
+    ],
+    "description": "An example schema that defines complex types containing basic types, dates, timestamps, and UUIDs. Includes examples of complex types with array and dictionary properties of complex and basic types."
+  }
+  

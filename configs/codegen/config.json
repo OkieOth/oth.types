@@ -1,0 +1,126 @@
+[
+    {
+        "name": "model0101",
+        "description": "code gen configuration for example types",
+        "models": [ {
+            "schema": "/project/configs/models/model_0101.json"
+            }
+        ],
+        "tasks": [
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types.mako",
+                    "destFile": "/project/generated/pkg/model0101/model0101.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0101"
+                        },
+                        {
+                            "name": "optionalPackage",
+                            "value": "oth.types/pkg/optional_types"
+                        },
+                        {
+                            "name": "jsonSerialization",
+                            "value": "True"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "name": "model0102",
+        "description": "code gen configuration for example types",
+        "models": [ {
+            "schema": "/project/configs/models/model_0102.json"
+            }
+        ],
+        "tasks": [
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types.mako",
+                    "destFile": "/project/generated/pkg/model0102/model0102.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0102"
+                        },
+                        {
+                            "name": "optionalPackage",
+                            "value": "oth.types/pkg/optional_types"
+                        },
+                        {
+                            "name": "jsonSerialization",
+                            "value": "True"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "name": "model0201",
+        "description": "code gen configuration for example types",
+        "models": [ {
+            "schema": "/project/configs/models/model_0201.json"
+            }
+        ],
+        "tasks": [
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types.mako",
+                    "destFile": "/project/generated/pkg/model0201/model0201.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0201"
+                        },
+                        {
+                            "name": "optionalPackage",
+                            "value": "oth.types/pkg/optional_types"
+                        },
+                        {
+                            "name": "jsonSerialization",
+                            "value": "True"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "name": "model0202",
+        "description": "code gen configuration for example types",
+        "models": [ {
+            "schema": "/project/configs/models/model_0202.json"
+            }
+        ],
+        "tasks": [
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types.mako",
+                    "destFile": "/project/generated/pkg/model0202/model0202.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0201"
+                        },
+                        {
+                            "name": "optionalPackage",
+                            "value": "oth.types/pkg/optional_types"
+                        },
+                        {
+                            "name": "jsonSerialization",
+                            "value": "True"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]

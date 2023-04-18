@@ -1,0 +1,123 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "model0201",
+    "definitions": {
+      "Type1": {
+        "type": "object",
+        "properties": {
+          "string_prop": {
+            "type": "string"
+          },
+          "number_prop": {
+            "type": "number"
+          },
+          "array_prop": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dict_prop": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "string_prop",
+          "number_prop",
+          "array_prop",
+          "dict_prop"
+        ]
+      },
+      "Type2": {
+        "type": "object",
+        "properties": {
+          "string_prop": {
+            "type": "string"
+          },
+          "boolean_prop": {
+            "type": "boolean"
+          },
+          "array_prop": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "dict_prop": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "string_prop",
+          "boolean_prop",
+          "array_prop",
+          "dict_prop"
+        ]
+      },
+      "Type3": {
+        "type": "object",
+        "properties": {
+          "type1_prop": {
+            "$ref": "#/definitions/Type1"
+          },
+          "type2_prop": {
+            "$ref": "#/definitions/Type2"
+          },
+          "type2_array_prop": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/Type2"
+            }
+          },
+          "type2_dict_prop": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/Type2"
+            }
+          }
+        },
+        "required": [
+          "type1_prop",
+          "type2_prop",
+          "type2_array_prop",
+          "type2_dict_prop"
+        ]
+      },
+      "Type4": {
+        "type": "object",
+        "properties": {
+          "string_prop": {
+            "type": "string"
+          },
+          "integer_prop": {
+            "type": "integer"
+          },
+          "array_prop": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "dict_prop": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "string_prop",
+          "integer_prop",
+          "array_prop",
+          "dict_prop"
+        ]
+      }
+    }
+  }
+  
