@@ -9,7 +9,8 @@
     templateVersion = '1.1.0'
 
     packageName = templateParameters.get('modelPackage','<<PLEASE SET modelPackage TEMPLATE PARAM>>')
-    optionalPackage = templateParameters.get('optionalPackage','<<PLEASE SET modelPackage TEMPLATE PARAM>>')
+    optionalPackage = templateParameters.get('optionalPackage','<<PLEASE SET optionalPackage TEMPLATE PARAM>>')
+    jsonTypesPackage = templateParameters.get('jsonTypesPackage','<<PLEASE SET jsonTypesPackage TEMPLATE PARAM>>')
     jsonSerialization = templateParameters.get('jsonSerialization',False)
 
     def printStarForJson(isJson):
@@ -42,11 +43,20 @@
         elif isinstance(typeObj, model.EnumType):
             ret = typeObj.name
         elif isinstance(typeObj, model.DateType):
-            ret = 'time.Time'
+            if jsonSerialization:
+                ret = 'json_types.JsonDate'
+            else:
+                ret = 'time.Time'
         elif isinstance(typeObj, model.TimeType):
-            ret = 'time.Time'
+            if jsonSerialization:
+                ret = 'json_types.JsonTime'
+            else:
+                ret = 'time.Time'
         elif isinstance(typeObj, model.DateTimeType):
-            ret = 'time.Time'
+            if jsonSerialization:
+                ret = 'json_types.JsonTimestamp'
+            else:
+                ret = 'time.Time'
         elif isinstance(typeObj, model.DictionaryType):
             ret = '{}map[string]{}'.format(printStarForJson(forJson),printGolangType(typeObj.valueType, False, True, 0, False))
         elif isinstance(typeObj, model.ComplexType):
@@ -96,12 +106,17 @@ import (
     uuid "github.com/google/uuid"
 % endif
 % if modelFuncs.isAtLeastOneDateRelatedTypeContained(modelTypes):
+    % if jsonSerialization:
+    json_types "${jsonTypesPackage}"
+    % else:
     "time"
+    % endif
 % endif
 % if modelFuncs.containsOptionalProps(modelTypes):
     optional "${optionalPackage}"
 % endif
 	encJson "encoding/json"
+    "reflect"
 )
 
 % for type in modelTypes:
@@ -143,6 +158,31 @@ func Make${type.name}() ${type.name} {
     var ret ${type.name}
     // TODO: initialize default values
     return ret
+}
+
+func (v ${type.name}) Equals(o ${type.name}) bool {
+        % for property in type.properties:
+            % if isinstance(property.type, model.DictionaryType):
+    if len(v.${stringUtils.toUpperCamelCase(property.name)}) != len(o.${stringUtils.toUpperCamelCase(property.name)}) {
+        return false
+    }
+    for key, vValue := range v.${stringUtils.toUpperCamelCase(property.name)} {
+        oValue, exists := o.${stringUtils.toUpperCamelCase(property.name)}[key]
+        if (!exists) || (!reflect.DeepEqual(oValue, vValue)) {
+            return false
+        }
+    }
+            % elif (not property.isArray) and (not isinstance(property.type, model.ArrayType)) and (modelFuncs.isBaseType(property.type) or isinstance(property.type, model.EnumType)):
+    if v.${stringUtils.toUpperCamelCase(property.name)} != o.${stringUtils.toUpperCamelCase(property.name)} {
+        return false
+    }
+            % else:
+    if !reflect.DeepEqual(v.${stringUtils.toUpperCamelCase(property.name)}, o.${stringUtils.toUpperCamelCase(property.name)}) {
+        return false
+    }
+            % endif
+        % endfor
+	return true
 }
 
     % endif
@@ -195,7 +235,7 @@ func (v ${type.name}) MarshalJSON() ([]byte, error) {
 
 	return encJson.Marshal(&struct {
             % for property in type.properties:
-        ${stringUtils.toUpperCamelCase(property.name)} ${printGolangType(property.type, property.isArray, True, property.arrayDimensions, True)} `json:"${property.name}${printOmitemptyIfNeeded(property)}"`
+        ${stringUtils.toUpperCamelCase(property.name)} ${printGolangType(property.type, property.isArray, property.required, property.arrayDimensions, True)} `json:"${property.name}${printOmitemptyIfNeeded(property)}"`
             % endfor
 	}{
             % for property in type.properties:

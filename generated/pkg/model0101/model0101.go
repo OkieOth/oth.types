@@ -6,9 +6,10 @@ package model0101
 
 import (
     uuid "github.com/google/uuid"
-    "time"
+    json_types "oth.types/pkg/json_types"
     optional "oth.types/pkg/optional_types"
 	encJson "encoding/json"
+    "reflect"
 )
 
 
@@ -31,10 +32,10 @@ type Model0101 struct {
     Boolean_prop bool
 
     // A date property
-    Date_prop time.Time
+    Date_prop json_types.JsonDate
 
     // A timestamp property
-    Timestamp_prop time.Time
+    Timestamp_prop json_types.JsonTimestamp
 
     // A UUID property
     Uuid_prop uuid.UUID
@@ -51,6 +52,43 @@ func MakeModel0101() Model0101 {
     var ret Model0101
     // TODO: initialize default values
     return ret
+}
+
+func (v Model0101) Equals(o Model0101) bool {
+    if v.String_prop != o.String_prop {
+        return false
+    }
+    if v.Number_prop != o.Number_prop {
+        return false
+    }
+    if v.Integer_prop != o.Integer_prop {
+        return false
+    }
+    if v.Boolean_prop != o.Boolean_prop {
+        return false
+    }
+    if v.Date_prop != o.Date_prop {
+        return false
+    }
+    if v.Timestamp_prop != o.Timestamp_prop {
+        return false
+    }
+    if v.Uuid_prop != o.Uuid_prop {
+        return false
+    }
+    if !reflect.DeepEqual(v.Array_prop, o.Array_prop) {
+        return false
+    }
+    if len(v.Dict_prop) != len(o.Dict_prop) {
+        return false
+    }
+    for key, vValue := range v.Dict_prop {
+        oValue, exists := o.Dict_prop[key]
+        if (!exists) || (!reflect.DeepEqual(oValue, vValue)) {
+            return false
+        }
+    }
+	return true
 }
 
 type OptionalModel0101 struct {
@@ -89,8 +127,8 @@ func (v Model0101) MarshalJSON() ([]byte, error) {
         Number_prop float64 `json:"number_prop"`
         Integer_prop int32 `json:"integer_prop"`
         Boolean_prop bool `json:"boolean_prop"`
-        Date_prop time.Time `json:"date_prop"`
-        Timestamp_prop time.Time `json:"timestamp_prop"`
+        Date_prop json_types.JsonDate `json:"date_prop"`
+        Timestamp_prop json_types.JsonTimestamp `json:"timestamp_prop"`
         Uuid_prop uuid.UUID `json:"uuid_prop"`
         Array_prop *[]Model0101Array_prop `json:"array_prop,omitempty"`
         Dict_prop *map[string]string `json:"dict_prop,omitempty"`
@@ -131,6 +169,16 @@ func MakeModel0101Array_prop() Model0101Array_prop {
     var ret Model0101Array_prop
     // TODO: initialize default values
     return ret
+}
+
+func (v Model0101Array_prop) Equals(o Model0101Array_prop) bool {
+    if v.Array_string_prop != o.Array_string_prop {
+        return false
+    }
+    if v.Array_number_prop != o.Array_number_prop {
+        return false
+    }
+	return true
 }
 
 type OptionalModel0101Array_prop struct {

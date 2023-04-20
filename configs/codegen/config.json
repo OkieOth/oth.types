@@ -22,6 +22,10 @@
                             "value": "oth.types/pkg/optional_types"
                         },
                         {
+                            "name": "jsonTypesPackage",
+                            "value": "oth.types/pkg/json_types"
+                        },
+                        {
                             "name": "jsonSerialization",
                             "value": "True"
                         }
@@ -51,6 +55,10 @@
                         {
                             "name": "optionalPackage",
                             "value": "oth.types/pkg/optional_types"
+                        },
+                        {
+                            "name": "jsonTypesPackage",
+                            "value": "oth.types/pkg/json_types"
                         },
                         {
                             "name": "jsonSerialization",
@@ -84,6 +92,10 @@
                             "value": "oth.types/pkg/optional_types"
                         },
                         {
+                            "name": "jsonTypesPackage",
+                            "value": "oth.types/pkg/json_types"
+                        },
+                        {
                             "name": "jsonSerialization",
                             "value": "True"
                         }
@@ -113,6 +125,10 @@
                         {
                             "name": "optionalPackage",
                             "value": "oth.types/pkg/optional_types"
+                        },
+                        {
+                            "name": "jsonTypesPackage",
+                            "value": "oth.types/pkg/json_types"
                         },
                         {
                             "name": "jsonSerialization",

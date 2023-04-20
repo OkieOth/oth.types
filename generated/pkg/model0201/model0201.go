@@ -6,6 +6,7 @@ package model0201
 
 import (
 	encJson "encoding/json"
+    "reflect"
 )
 
 
@@ -25,6 +26,28 @@ func MakeType1() Type1 {
     var ret Type1
     // TODO: initialize default values
     return ret
+}
+
+func (v Type1) Equals(o Type1) bool {
+    if v.String_prop != o.String_prop {
+        return false
+    }
+    if v.Number_prop != o.Number_prop {
+        return false
+    }
+    if !reflect.DeepEqual(v.Array_prop, o.Array_prop) {
+        return false
+    }
+    if len(v.Dict_prop) != len(o.Dict_prop) {
+        return false
+    }
+    for key, vValue := range v.Dict_prop {
+        oValue, exists := o.Dict_prop[key]
+        if (!exists) || (!reflect.DeepEqual(oValue, vValue)) {
+            return false
+        }
+    }
+	return true
 }
 
 type OptionalType1 struct {
@@ -101,6 +124,28 @@ func MakeType2() Type2 {
     return ret
 }
 
+func (v Type2) Equals(o Type2) bool {
+    if v.String_prop != o.String_prop {
+        return false
+    }
+    if v.Boolean_prop != o.Boolean_prop {
+        return false
+    }
+    if !reflect.DeepEqual(v.Array_prop, o.Array_prop) {
+        return false
+    }
+    if len(v.Dict_prop) != len(o.Dict_prop) {
+        return false
+    }
+    for key, vValue := range v.Dict_prop {
+        oValue, exists := o.Dict_prop[key]
+        if (!exists) || (!reflect.DeepEqual(oValue, vValue)) {
+            return false
+        }
+    }
+	return true
+}
+
 type OptionalType2 struct {
 	Value Type2
 	IsSet bool
@@ -175,6 +220,28 @@ func MakeType3() Type3 {
     return ret
 }
 
+func (v Type3) Equals(o Type3) bool {
+    if !reflect.DeepEqual(v.Type1_prop, o.Type1_prop) {
+        return false
+    }
+    if !reflect.DeepEqual(v.Type2_prop, o.Type2_prop) {
+        return false
+    }
+    if !reflect.DeepEqual(v.Type2_array_prop, o.Type2_array_prop) {
+        return false
+    }
+    if len(v.Type2_dict_prop) != len(o.Type2_dict_prop) {
+        return false
+    }
+    for key, vValue := range v.Type2_dict_prop {
+        oValue, exists := o.Type2_dict_prop[key]
+        if (!exists) || (!reflect.DeepEqual(oValue, vValue)) {
+            return false
+        }
+    }
+	return true
+}
+
 type OptionalType3 struct {
 	Value Type3
 	IsSet bool
@@ -247,6 +314,28 @@ func MakeType4() Type4 {
     var ret Type4
     // TODO: initialize default values
     return ret
+}
+
+func (v Type4) Equals(o Type4) bool {
+    if v.String_prop != o.String_prop {
+        return false
+    }
+    if v.Integer_prop != o.Integer_prop {
+        return false
+    }
+    if !reflect.DeepEqual(v.Array_prop, o.Array_prop) {
+        return false
+    }
+    if len(v.Dict_prop) != len(o.Dict_prop) {
+        return false
+    }
+    for key, vValue := range v.Dict_prop {
+        oValue, exists := o.Dict_prop[key]
+        if (!exists) || (!reflect.DeepEqual(oValue, vValue)) {
+            return false
+        }
+    }
+	return true
 }
 
 type OptionalType4 struct {

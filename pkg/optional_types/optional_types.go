@@ -23,7 +23,7 @@ func (m Optional[C]) UnSet() {
 	m.IsSet = false
 }
 
-func (v Optional[C]) UnmarshalJSON(data []byte) error {
+func (v *Optional[C]) UnmarshalJSON(data []byte) error {
 	if len(data) == 0 {
 		v.IsSet = false
 		return nil
@@ -60,7 +60,7 @@ func (m OptionalEnum[C]) UnSet() {
 	m.IsSet = false
 }
 
-func (v OptionalEnum[C]) UnmarshalJSON(data []byte) error {
+func (v *OptionalEnum[C]) UnmarshalJSON(data []byte) error {
 	if len(data) == 0 {
 		return nil
 	}
