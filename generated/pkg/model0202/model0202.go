@@ -1,7 +1,7 @@
 // Attention, this file is generated. Manual changes get lost with the next
 // run of the code generation.
 // created by yacg (template: golang_types.mako v1.1.0)
-package model0201
+package model0202
 
 
 import (

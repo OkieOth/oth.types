@@ -40,24 +40,4 @@ func TestBundleLoad(t *testing.T) {
 		t.Errorf(":-(")
 		return
 	}
-	/*
-		var solution types.Solution
-		err := LoadOneObjFromFile(&solution, "../configs/models/examples/myCity_platform.json")
-		if err != nil {
-			t.Errorf("error while loading bundle file")
-			return
-		}
-		bytes, err := solution.MarshalJSON()
-		if err != nil {
-			t.Errorf("error while json serialize solution")
-			return
-		}
-		var solution2 types.Solution
-
-		err2 := encJson.Unmarshal(bytes, &solution2)
-		if err2 != nil {
-			t.Errorf("error while json unmarshal solution again")
-			return
-		}
-	*/
 }

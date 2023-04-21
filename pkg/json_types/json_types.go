@@ -16,7 +16,12 @@ const FORMAT_STR_TIMESTAMP = "2006-01-02T15:04:05"
 const FORMAT_STR_TIME = "15:04:05"
 
 func (d JsonDate) MarshalJSON() ([]byte, error) {
-	return []byte(`"` + time.Time(d).Format(FORMAT_STR_DATE) + `"`), nil
+	if time.Time(d).IsZero() {
+		var ret []byte
+		return ret, nil
+	} else {
+		return []byte(`"` + time.Time(d).Format(FORMAT_STR_DATE) + `"`), nil
+	}
 }
 
 func (d *JsonDate) UnmarshalJSON(b []byte) error {
@@ -34,7 +39,12 @@ func (d *JsonDate) UnmarshalJSON(b []byte) error {
 }
 
 func (d JsonTime) MarshalJSON() ([]byte, error) {
-	return []byte(`"` + time.Time(d).Format(FORMAT_STR_DATE) + `"`), nil
+	if time.Time(d).IsZero() {
+		var ret []byte
+		return ret, nil
+	} else {
+		return []byte(`"` + time.Time(d).Format(FORMAT_STR_DATE) + `"`), nil
+	}
 }
 
 func (d *JsonTime) UnmarshalJSON(b []byte) error {
@@ -52,7 +62,12 @@ func (d *JsonTime) UnmarshalJSON(b []byte) error {
 }
 
 func (d JsonTimestamp) MarshalJSON() ([]byte, error) {
-	return []byte(`"` + time.Time(d).Format(FORMAT_STR_TIMESTAMP) + `"`), nil
+	if time.Time(d).IsZero() {
+		var ret []byte
+		return ret, nil
+	} else {
+		return []byte(`"` + time.Time(d).Format(FORMAT_STR_TIMESTAMP) + `"`), nil
+	}
 }
 
 func (d *JsonTimestamp) UnmarshalJSON(b []byte) error {

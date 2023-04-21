@@ -31,6 +31,27 @@
                         }
                     ]
                 }
+            },
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types_tests.mako",
+                    "destFile": "/project/generated/pkg/model0101/model0101_test.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0101"
+                        },
+                        {
+                            "name": "exampleData",
+                            "value": "0101"
+                        },
+                        {
+                            "name": "exampleDataBasePath",
+                            "value": "../../../configs/models/example_data"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -63,6 +84,27 @@
                         {
                             "name": "jsonSerialization",
                             "value": "True"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types_tests.mako",
+                    "destFile": "/project/generated/pkg/model0102/model0102_test.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0102"
+                        },
+                        {
+                            "name": "exampleData",
+                            "value": "0102"
+                        },
+                        {
+                            "name": "exampleDataBasePath",
+                            "value": "../../../configs/models/example_data"
                         }
                     ]
                 }
@@ -101,6 +143,27 @@
                         }
                     ]
                 }
+            },
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types_tests.mako",
+                    "destFile": "/project/generated/pkg/model0201/model0201_test.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0201"
+                        },
+                        {
+                            "name": "exampleData",
+                            "value": "0201"
+                        },
+                        {
+                            "name": "exampleDataBasePath",
+                            "value": "../../../configs/models/example_data"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -120,7 +183,7 @@
                     "templateParams": [
                         {
                           "name": "modelPackage",
-                          "value": "model0201"
+                          "value": "model0202"
                         },
                         {
                             "name": "optionalPackage",
@@ -133,6 +196,27 @@
                         {
                             "name": "jsonSerialization",
                             "value": "True"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "types",
+                "singleFileTask": {
+                    "template": "/project/configs/codegen/templates/golang_types_tests.mako",
+                    "destFile": "/project/generated/pkg/model0202/model0202_test.go",
+                    "templateParams": [
+                        {
+                          "name": "modelPackage",
+                          "value": "model0202"
+                        },
+                        {
+                            "name": "exampleData",
+                            "value": "0202"
+                        },
+                        {
+                            "name": "exampleDataBasePath",
+                            "value": "../../../configs/models/example_data"
                         }
                     ]
                 }
