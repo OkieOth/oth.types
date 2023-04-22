@@ -18,18 +18,6 @@ func TestMakeModel0101(t *testing.T) {
 	}
 }
 
-func TestMakeOptionalModel0101(t *testing.T) {
-	o1 :=MakeOptionalModel0101()
-	o2 :=MakeOptionalModel0101()
-	if o1.IsSet || o2.IsSet {
-		t.Error("Optional type objects have a value after creation, type: Model0101")
-		return
-	}
-	if ! o1.Value.Equals(o2.Value) {
-		t.Error("two fresh created objects are not equal, type: Model0101")
-		return
-	}
-}
 
 func TestJsonModel0101(t *testing.T) {
 	var x []Model0101
@@ -71,18 +59,6 @@ func TestMakeModel0101Array_prop(t *testing.T) {
 	}
 }
 
-func TestMakeOptionalModel0101Array_prop(t *testing.T) {
-	o1 :=MakeOptionalModel0101Array_prop()
-	o2 :=MakeOptionalModel0101Array_prop()
-	if o1.IsSet || o2.IsSet {
-		t.Error("Optional type objects have a value after creation, type: Model0101Array_prop")
-		return
-	}
-	if ! o1.Value.Equals(o2.Value) {
-		t.Error("two fresh created objects are not equal, type: Model0101Array_prop")
-		return
-	}
-}
 
 func TestJsonModel0101Array_prop(t *testing.T) {
 	var x []Model0101Array_prop

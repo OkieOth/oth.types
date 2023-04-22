@@ -91,26 +91,6 @@ func (v Model0102) Equals(o Model0102) bool {
 	return true
 }
 
-type OptionalModel0102 struct {
-	Value Model0102
-	IsSet bool
-}
-
-// Creates a OptionalModel0102 object
-func MakeOptionalModel0102() OptionalModel0102 {
-    var ret OptionalModel0102
-    // TODO: initialize default values
-    return ret
-}
-
-func (m OptionalModel0102) Set(v Model0102) {
-	m.Value = v
-	m.IsSet = true
-}
-
-func (m OptionalModel0102) UnSet() {
-	m.IsSet = false
-}
 
 func (v Model0102) MarshalJSON() ([]byte, error) {
     var _String_prop string
@@ -167,14 +147,6 @@ func (v Model0102) MarshalJSON() ([]byte, error) {
         Array_prop: _Array_prop,
         Dict_prop: _Dict_prop,
 	})
-}
-
-func (v OptionalModel0102) MarshalJSON() ([]byte, error) {
-	if v.IsSet {
-		return encJson.Marshal(v.Value)
-	} else {
-		return []byte("null"), nil
-	}
 }
 
 
@@ -252,7 +224,6 @@ func (v OptionalModel0102Array_prop) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 }
-
 
 
 

@@ -124,18 +124,6 @@ func TestMakeType3(t *testing.T) {
 	}
 }
 
-func TestMakeOptionalType3(t *testing.T) {
-	o1 :=MakeOptionalType3()
-	o2 :=MakeOptionalType3()
-	if o1.IsSet || o2.IsSet {
-		t.Error("Optional type objects have a value after creation, type: Type3")
-		return
-	}
-	if ! o1.Value.Equals(o2.Value) {
-		t.Error("two fresh created objects are not equal, type: Type3")
-		return
-	}
-}
 
 func TestJsonType3(t *testing.T) {
 	var x []Type3
@@ -177,18 +165,6 @@ func TestMakeType4(t *testing.T) {
 	}
 }
 
-func TestMakeOptionalType4(t *testing.T) {
-	o1 :=MakeOptionalType4()
-	o2 :=MakeOptionalType4()
-	if o1.IsSet || o2.IsSet {
-		t.Error("Optional type objects have a value after creation, type: Type4")
-		return
-	}
-	if ! o1.Value.Equals(o2.Value) {
-		t.Error("two fresh created objects are not equal, type: Type4")
-		return
-	}
-}
 
 func TestJsonType4(t *testing.T) {
 	var x []Type4

@@ -18,18 +18,6 @@ func TestMakeModel0102(t *testing.T) {
 	}
 }
 
-func TestMakeOptionalModel0102(t *testing.T) {
-	o1 :=MakeOptionalModel0102()
-	o2 :=MakeOptionalModel0102()
-	if o1.IsSet || o2.IsSet {
-		t.Error("Optional type objects have a value after creation, type: Model0102")
-		return
-	}
-	if ! o1.Value.Equals(o2.Value) {
-		t.Error("two fresh created objects are not equal, type: Model0102")
-		return
-	}
-}
 
 func TestJsonModel0102(t *testing.T) {
 	var x []Model0102

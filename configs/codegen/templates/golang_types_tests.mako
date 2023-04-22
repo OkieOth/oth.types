@@ -98,6 +98,7 @@ func TestMake${type.name}(t *testing.T) {
 	}
 }
 
+        % if modelFuncs.typeIsAsOptionalContained(type.name, modelTypes):
 func TestMakeOptional${type.name}(t *testing.T) {
 	o1 :=MakeOptional${type.name}()
 	o2 :=MakeOptional${type.name}()
@@ -110,6 +111,7 @@ func TestMakeOptional${type.name}(t *testing.T) {
 		return
 	}
 }
+        % endif
 
         % if jsonSerialization:
 func TestJson${type.name}(t *testing.T) {

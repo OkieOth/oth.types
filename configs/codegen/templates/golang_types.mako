@@ -190,6 +190,7 @@ func (v ${type.name}) Equals(o ${type.name}) bool {
 
     % endif
     % if modelFuncs.isEnumType(type) or hasattr(type, "properties"):
+        % if modelFuncs.typeIsAsOptionalContained(type.name, modelTypes):
 type Optional${type.name} struct {
 	Value ${type.name}
 	IsSet bool
@@ -210,6 +211,7 @@ func (m Optional${type.name}) Set(v ${type.name}) {
 func (m Optional${type.name}) UnSet() {
 	m.IsSet = false
 }
+        % endif
 
         % if jsonSerialization:
 func (v ${type.name}) MarshalJSON() ([]byte, error) {
@@ -259,6 +261,7 @@ func (v ${type.name}) MarshalJSON() ([]byte, error) {
 	})
 }
 
+            % if modelFuncs.typeIsAsOptionalContained(type.name, modelTypes):
 func (v Optional${type.name}) MarshalJSON() ([]byte, error) {
 	if v.IsSet {
 		return encJson.Marshal(v.Value)
@@ -266,7 +269,7 @@ func (v Optional${type.name}) MarshalJSON() ([]byte, error) {
 		return []byte("null"), nil
 	}
 }
-
+            % endif
         % endif
     % endif
 

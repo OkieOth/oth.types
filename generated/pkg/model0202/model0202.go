@@ -110,7 +110,6 @@ func (v OptionalType1) MarshalJSON() ([]byte, error) {
 
 
 
-
 type Type2 struct {
 
     String_prop string
@@ -210,7 +209,6 @@ func (v OptionalType2) MarshalJSON() ([]byte, error) {
 
 
 
-
 type Type3 struct {
 
     Type1_prop OptionalType1
@@ -251,26 +249,6 @@ func (v Type3) Equals(o Type3) bool {
 	return true
 }
 
-type OptionalType3 struct {
-	Value Type3
-	IsSet bool
-}
-
-// Creates a OptionalType3 object
-func MakeOptionalType3() OptionalType3 {
-    var ret OptionalType3
-    // TODO: initialize default values
-    return ret
-}
-
-func (m OptionalType3) Set(v Type3) {
-	m.Value = v
-	m.IsSet = true
-}
-
-func (m OptionalType3) UnSet() {
-	m.IsSet = false
-}
 
 func (v Type3) MarshalJSON() ([]byte, error) {
     var _Type1_prop *Type1
@@ -301,14 +279,6 @@ func (v Type3) MarshalJSON() ([]byte, error) {
         Type2_array_prop: _Type2_array_prop,
         Type2_dict_prop: _Type2_dict_prop,
 	})
-}
-
-func (v OptionalType3) MarshalJSON() ([]byte, error) {
-	if v.IsSet {
-		return encJson.Marshal(v.Value)
-	} else {
-		return []byte("null"), nil
-	}
 }
 
 
@@ -355,26 +325,6 @@ func (v Type4) Equals(o Type4) bool {
 	return true
 }
 
-type OptionalType4 struct {
-	Value Type4
-	IsSet bool
-}
-
-// Creates a OptionalType4 object
-func MakeOptionalType4() OptionalType4 {
-    var ret OptionalType4
-    // TODO: initialize default values
-    return ret
-}
-
-func (m OptionalType4) Set(v Type4) {
-	m.Value = v
-	m.IsSet = true
-}
-
-func (m OptionalType4) UnSet() {
-	m.IsSet = false
-}
 
 func (v Type4) MarshalJSON() ([]byte, error) {
     var _String_prop string
@@ -401,14 +351,6 @@ func (v Type4) MarshalJSON() ([]byte, error) {
         Array_prop: _Array_prop,
         Dict_prop: _Dict_prop,
 	})
-}
-
-func (v OptionalType4) MarshalJSON() ([]byte, error) {
-	if v.IsSet {
-		return encJson.Marshal(v.Value)
-	} else {
-		return []byte("null"), nil
-	}
 }
 
 
