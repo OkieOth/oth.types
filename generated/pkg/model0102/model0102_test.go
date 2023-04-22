@@ -5,9 +5,8 @@ package model0102
 
 import (
 	encJson "encoding/json"
-	json_helper "oth.types/pkg/json_helper"
-	"reflect"
 	"testing"
+	json_helper "oth.types/pkg/json_helper"
 )
 
 func TestJsonModel0102(t *testing.T) {
@@ -30,9 +29,14 @@ func TestJsonModel0102(t *testing.T) {
 		return
 	}
 
-	for i, v := range x {
-		if !v.Equals(y[i]) {
-			t.Errorf("objects are not equal after json marshal/unmarshal, type: Model0102")
+
+	for i, value := range y {
+		value2 := x[i]
+		if !value.Equals(value2) {
+			b1, _ := encJson.Marshal(value)
+			b2, _ := encJson.Marshal(value2)
+			t.Errorf("objects are not equal after json marshal/unmarshal, type: Model0102\n%s\n%s\n", b1, b2)
+			return
 		}
 	}
 }
@@ -57,7 +61,15 @@ func TestJsonModel0102Array_prop(t *testing.T) {
 		return
 	}
 
-	if !reflect.DeepEqual(x, y) {
-		t.Errorf("objects are not equal after json marshal/unmarshal, type: Model0102Array_prop")
+
+	for i, value := range y {
+		value2 := x[i]
+		if !value.Equals(value2) {
+			b1, _ := encJson.Marshal(value)
+			b2, _ := encJson.Marshal(value2)
+			t.Errorf("objects are not equal after json marshal/unmarshal, type: Model0102Array_prop\n%s\n%s\n", b1, b2)
+			return
+		}
 	}
 }
+

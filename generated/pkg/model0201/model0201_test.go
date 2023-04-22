@@ -6,7 +6,6 @@ package model0201
 import (
 	encJson "encoding/json"
 	"testing"
-    "reflect"
 	json_helper "oth.types/pkg/json_helper"
 )
 
@@ -30,8 +29,15 @@ func TestJsonType1(t *testing.T) {
 		return
 	}
 
-	if !reflect.DeepEqual(x, y) {
-		t.Errorf("objects are not equal after json marshal/unmarshal, type: Type1")
+
+	for i, value := range y {
+		value2 := x[i]
+		if !value.Equals(value2) {
+			b1, _ := encJson.Marshal(value)
+			b2, _ := encJson.Marshal(value2)
+			t.Errorf("objects are not equal after json marshal/unmarshal, type: Type1\n%s\n%s\n", b1, b2)
+			return
+		}
 	}
 }
 
@@ -55,8 +61,15 @@ func TestJsonType2(t *testing.T) {
 		return
 	}
 
-	if !reflect.DeepEqual(x, y) {
-		t.Errorf("objects are not equal after json marshal/unmarshal, type: Type2")
+
+	for i, value := range y {
+		value2 := x[i]
+		if !value.Equals(value2) {
+			b1, _ := encJson.Marshal(value)
+			b2, _ := encJson.Marshal(value2)
+			t.Errorf("objects are not equal after json marshal/unmarshal, type: Type2\n%s\n%s\n", b1, b2)
+			return
+		}
 	}
 }
 
@@ -80,8 +93,15 @@ func TestJsonType3(t *testing.T) {
 		return
 	}
 
-	if !reflect.DeepEqual(x, y) {
-		t.Errorf("objects are not equal after json marshal/unmarshal, type: Type3")
+
+	for i, value := range y {
+		value2 := x[i]
+		if !value.Equals(value2) {
+			b1, _ := encJson.Marshal(value)
+			b2, _ := encJson.Marshal(value2)
+			t.Errorf("objects are not equal after json marshal/unmarshal, type: Type3\n%s\n%s\n", b1, b2)
+			return
+		}
 	}
 }
 
@@ -105,8 +125,15 @@ func TestJsonType4(t *testing.T) {
 		return
 	}
 
-	if !reflect.DeepEqual(x, y) {
-		t.Errorf("objects are not equal after json marshal/unmarshal, type: Type4")
+
+	for i, value := range y {
+		value2 := x[i]
+		if !value.Equals(value2) {
+			b1, _ := encJson.Marshal(value)
+			b2, _ := encJson.Marshal(value2)
+			t.Errorf("objects are not equal after json marshal/unmarshal, type: Type4\n%s\n%s\n", b1, b2)
+			return
+		}
 	}
 }
 

@@ -173,9 +173,9 @@ func (m OptionalType2) UnSet() {
 }
 
 func (v Type2) MarshalJSON() ([]byte, error) {
-    var _Boolean_prop bool
+    var _Boolean_prop *bool
 	if v.Boolean_prop.IsSet {
-		_Boolean_prop = v.Boolean_prop.Value
+		_Boolean_prop = &v.Boolean_prop.Value
 	}
     var _Array_prop *[]int32
 	if len(v.Array_prop) > 0 {
@@ -188,7 +188,7 @@ func (v Type2) MarshalJSON() ([]byte, error) {
 
 	return encJson.Marshal(&struct {
         String_prop string `json:"string_prop"`
-        Boolean_prop bool `json:"boolean_prop,omitempty"`
+        Boolean_prop *bool `json:"boolean_prop,omitempty"`
         Array_prop *[]int32 `json:"array_prop,omitempty"`
         Dict_prop *map[string]string `json:"dict_prop,omitempty"`
 	}{

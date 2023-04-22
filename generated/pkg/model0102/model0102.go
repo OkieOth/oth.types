@@ -121,21 +121,21 @@ func (v Model0102) MarshalJSON() ([]byte, error) {
 	if v.Integer_prop.IsSet {
 		_Integer_prop = v.Integer_prop.Value
 	}
-    var _Boolean_prop bool
+    var _Boolean_prop *bool
 	if v.Boolean_prop.IsSet {
-		_Boolean_prop = v.Boolean_prop.Value
+		_Boolean_prop = &v.Boolean_prop.Value
 	}
-    var _Date_prop json_types.JsonDate
+    var _Date_prop *json_types.JsonDate
 	if v.Date_prop.IsSet {
-		_Date_prop = v.Date_prop.Value
+		_Date_prop = &v.Date_prop.Value
 	}
-    var _Timestamp_prop json_types.JsonTimestamp
+    var _Timestamp_prop *json_types.JsonTimestamp
 	if v.Timestamp_prop.IsSet {
-		_Timestamp_prop = v.Timestamp_prop.Value
+		_Timestamp_prop = &v.Timestamp_prop.Value
 	}
-    var _Uuid_prop uuid.UUID
+    var _Uuid_prop *uuid.UUID
 	if v.Uuid_prop.IsSet {
-		_Uuid_prop = v.Uuid_prop.Value
+		_Uuid_prop = &v.Uuid_prop.Value
 	}
     var _Array_prop *[]Model0102Array_prop
 	if len(v.Array_prop) > 0 {
@@ -150,10 +150,10 @@ func (v Model0102) MarshalJSON() ([]byte, error) {
         String_prop string `json:"string_prop,omitempty"`
         Number_prop float64 `json:"number_prop"`
         Integer_prop int32 `json:"integer_prop,omitempty"`
-        Boolean_prop bool `json:"boolean_prop,omitempty"`
-        Date_prop json_types.JsonDate `json:"date_prop,omitempty"`
-        Timestamp_prop json_types.JsonTimestamp `json:"timestamp_prop,omitempty"`
-        Uuid_prop uuid.UUID `json:"uuid_prop,omitempty"`
+        Boolean_prop *bool `json:"boolean_prop,omitempty"`
+        Date_prop *json_types.JsonDate `json:"date_prop,omitempty"`
+        Timestamp_prop *json_types.JsonTimestamp `json:"timestamp_prop,omitempty"`
+        Uuid_prop *uuid.UUID `json:"uuid_prop,omitempty"`
         Array_prop *[]Model0102Array_prop `json:"array_prop,omitempty"`
         Dict_prop *map[string]string `json:"dict_prop,omitempty"`
 	}{

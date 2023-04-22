@@ -33,28 +33,31 @@
             else:
                 ret = 'float32'
         elif isinstance(typeObj, model.BooleanType):
-            ret = 'bool'
+            if jsonSerialization:
+                ret = printStarForJson(forJson and (not isRequired)) + 'bool'
+            else:
+                ret = 'bool'
         elif isinstance(typeObj, model.StringType):
             ret = 'string'
         elif isinstance(typeObj, model.BytesType):
             ret = 'byte'
         elif isinstance(typeObj, model.UuidType):
-            ret = 'uuid.UUID'
+            ret = printStarForJson(forJson and (not isRequired)) + 'uuid.UUID'
         elif isinstance(typeObj, model.EnumType):
             ret = typeObj.name
         elif isinstance(typeObj, model.DateType):
             if jsonSerialization:
-                ret = 'json_types.JsonDate'
+                ret = printStarForJson(forJson and (not isRequired)) + 'json_types.JsonDate'
             else:
                 ret = 'time.Time'
         elif isinstance(typeObj, model.TimeType):
             if jsonSerialization:
-                ret = 'json_types.JsonTime'
+                ret = printStarForJson(forJson and (not isRequired)) + 'json_types.JsonTime'
             else:
                 ret = 'time.Time'
         elif isinstance(typeObj, model.DateTimeType):
             if jsonSerialization:
-                ret = 'json_types.JsonTimestamp'
+                ret = printStarForJson(forJson and (not isRequired)) + 'json_types.JsonTimestamp'
             else:
                 ret = 'time.Time'
         elif isinstance(typeObj, model.DictionaryType):
@@ -226,6 +229,14 @@ func (v ${type.name}) MarshalJSON() ([]byte, error) {
         _${stringUtils.toUpperCamelCase(property.name)} = &v.${stringUtils.toUpperCamelCase(property.name)}.Value
                     % elif isinstance(property.type, model.EnumType):
 		_${stringUtils.toUpperCamelCase(property.name)} = string(v.${stringUtils.toUpperCamelCase(property.name)}.Value)
+                    % elif isinstance(property.type, model.DateType):
+		_${stringUtils.toUpperCamelCase(property.name)} = &v.${stringUtils.toUpperCamelCase(property.name)}.Value
+                    % elif isinstance(property.type, model.DateTimeType):
+		_${stringUtils.toUpperCamelCase(property.name)} = &v.${stringUtils.toUpperCamelCase(property.name)}.Value
+                    % elif isinstance(property.type, model.TimeType):
+		_${stringUtils.toUpperCamelCase(property.name)} = &v.${stringUtils.toUpperCamelCase(property.name)}.Value
+                    % elif isinstance(property.type, model.UuidType) or isinstance(property.type, model.BooleanType):
+		_${stringUtils.toUpperCamelCase(property.name)} = &v.${stringUtils.toUpperCamelCase(property.name)}.Value
                     % else:
 		_${stringUtils.toUpperCamelCase(property.name)} = v.${stringUtils.toUpperCamelCase(property.name)}.Value
                     % endif
