@@ -11,6 +11,7 @@
     packageName = templateParameters.get('modelPackage','<<PLEASE SET modelPackage TEMPLATE PARAM>>')
     exampleData = templateParameters.get('exampleData','<<PLEASE SET exampleData TEMPLATE PARAM>>')
     exampleDataBasePath = templateParameters.get('exampleDataBasePath','<<PLEASE SET exampleDataBasePath TEMPLATE PARAM>>')
+    jsonSerialization = templateParameters.get('jsonSerialization',False)
 
     def printGolangType(typeObj, isArray, isRequired, arrayDimensions, forJson):
         ret = ''
@@ -77,15 +78,40 @@
 package ${packageName}
 
 import (
-	encJson "encoding/json"
 	"testing"
+% if jsonSerialization:
+	encJson "encoding/json"
 	json_helper "oth.types/pkg/json_helper"
+% endif
 )
 
 % for type in modelTypes:
     % if modelFuncs.isEnumType(type):
     % endif
     % if hasattr(type, "properties"):
+func TestMake${type.name}(t *testing.T) {
+	o1 :=Make${type.name}()
+	o2 :=Make${type.name}()
+	if ! o1.Equals(o2) {
+		t.Error("two fresh created objects are not equal, type: ${type.name}")
+		return
+	}
+}
+
+func TestMakeOptional${type.name}(t *testing.T) {
+	o1 :=MakeOptional${type.name}()
+	o2 :=MakeOptional${type.name}()
+	if o1.IsSet || o2.IsSet {
+		t.Error("Optional type objects have a value after creation, type: ${type.name}")
+		return
+	}
+	if ! o1.Value.Equals(o2.Value) {
+		t.Error("two fresh created objects are not equal, type: ${type.name}")
+		return
+	}
+}
+
+        % if jsonSerialization:
 func TestJson${type.name}(t *testing.T) {
 	var x []${type.name}
 	err := json_helper.LoadOneObjFromFile(&x, "${exampleDataBasePath}/${exampleData}/${type.name}.json")
@@ -117,6 +143,6 @@ func TestJson${type.name}(t *testing.T) {
 		}
 	}
 }
-
+        % endif
     % endif
 % endfor
